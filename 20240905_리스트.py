@@ -39,6 +39,8 @@ a = a + [99]
 print(a)
 a = a + [15]
 print(a)
+a.append(5)
+print(a)
 
     #값 수정
 a = [23, 3, 16, 45, 11]

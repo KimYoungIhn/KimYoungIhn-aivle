@@ -33,6 +33,9 @@ customers.head()
 	      P-벨류 (0.05 보다 작은가!) (P-valus)  x̄ 1(평균) == > 정규분포를 따른다. 
 								x̄ 1(평균)  - x̄ 2(평균) ==> 정규분포를 따른다.
 		귀무가설이 참이라고 할때 , 차이 값이 우연이야! 그 값이 P-value 야! 그 값은 0.05 이며 5%야! 그거보다 작으면 인정 할께!!!!
+		모집단에서 샘플링 x̄ 1~x̄ 100 의 평균을 구해서 kdeplot 를 구하니 정규분포에 따른다, 평균의 수가 많으면 많을수록 정규분포에 따를수 밖에 없다.
+		즉 모집단의 분포가 정규분포를 확인하기 위해 평균을 구했다면 정규분포이다. 중심 극한 정리(CLT) 이다.		
+
 
 범 : 숫자
 평균 비교
@@ -44,3 +47,56 @@ barplat
 모자잇 플롯
 카이제곱 검정 
 
+숫자 : 범
+그룹별
+	히스토그램
+	kdeplot
+
+
+
+이변량 분석
+feature ='JobSatisfaction'
+
+pd.crosstab(data[target], data[feature]) #교차표
+pd.crosstab(data[target], data[feature], normalize = 'columns') # 교차표 비율
+
+#시각화 
+mosaic(data, [ feature,target])
+plt.axhline(1- data[target].mean(), color = 'r')
+plt.show()
+
+#검정
+
+# 먼저 집계
+table = pd.crosstab(data[target], data[feature])
+print('교차표\n', table)
+print('-' * 100)
+
+# 카이제곱검정
+result = spst.chi2_contingency(table)
+print('카이제곱통계량', result[0])
+print('p-value', result[1])
+print('자유도', result[2])
+print('기대빈도\n',result[3])
+
+
+
+범주 : 범주
+feature = 'Age'
+
+sns.kdeplot(x= feature, data = data, hue = target,
+            common_norm = False)
+plt.show()
+
+
+sns.kdeplot(x= feature, data = data, hue = target
+            , multiple = 'fill')
+plt.axhline(data[target].mean(), color = 'r')
+plt.show()
+
+
+// 오름차순으로 정렬해서 볼 수 있음.
+temp = data.sort_values('JobSatisfaction')
+mosaic(temp, [ 'JobSatisfaction', target])
+plt.axhline(1- data[target].mean(), color = 'r')
+plt.show()
