@@ -1,0 +1,46 @@
+데이터 프레임
+
+
+sales.loc[(sales['OrderDate'] >= '2016-02-01') & (sales['OrderDate'] < '2016-03-01')]
+
+sales.loc[sales['OrderDate'].between('2016-02-01','2016-03-01', inclusive ='left' )]
+
+products.loc[products['SubCategory'].isin(['사탕류', '과자','빵'])]
+
+
+sales['OrderDate'] = pd.to_datetime(sales['OrderDate'])
+
+
+sales['Year'] = sales['OrderDate'].dt.year
+sales['Month'] = sales['OrderDate'].dt.month
+
+
+customers['AgeGroup'] = pd.cut(customers['Age'], 
+                               bins = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
+                               labels = ['age_0', 'age_10', 'age_20', 'age_30', 'age_40', 'age_50', 'age_60',
+                                         'age_70', 'age_80', 'age_90'])
+customers.head()
+
+
+그래프 읽기
+1. 축을 보아라
+2. 데이터가 밀집되어 있는곳, 희박한 곳 찾아라
+3. 밀집과 희박에 대한 이유를 찾아라!(데이터를 찾거나(이변량 분석), 현장 확인 또한 놓치지 마라)
+
+숫자 : 숫자
+산점도 - 상관분석
+	     상관대수
+	      P-벨류 (0.05 보다 작은가!) (P-valus)  x̄ 1(평균) == > 정규분포를 따른다. 
+								x̄ 1(평균)  - x̄ 2(평균) ==> 정규분포를 따른다.
+		귀무가설이 참이라고 할때 , 차이 값이 우연이야! 그 값이 P-value 야! 그 값은 0.05 이며 5%야! 그거보다 작으면 인정 할께!!!!
+
+범 : 숫자
+평균 비교
+barplat
+		T-test
+		ANVOA
+
+범 : 범
+모자잇 플롯
+카이제곱 검정 
+

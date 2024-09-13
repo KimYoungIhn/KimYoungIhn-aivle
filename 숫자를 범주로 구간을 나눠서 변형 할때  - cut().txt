@@ -1,0 +1,20 @@
+숫자를 범주로 구간을 나눠서 변형 할때  - cut()
+
+pd.concut = > 구조를 기준으로 합친다 (인덱스)
+mege = > 특정 값으로 옆으로 
+		df1, df2 ineer , left, right
+
+시계열데이터 => 시간적 데이터를 기준으로 동등한 시간의 흐름이 필요하다.
+				즉 시간의 흐름이 없는 직원 테이블은 시계열이 아니라
+
+				쉬프트 
+data['Grocery_3'] = data['Grocery'].shift(7) // 7일치를 밀어서 보낸다.
+data.head(10)
+				롤링
+temp['Amt_MA7_1'] = temp['Amt'].rolling(7).mean()    더하기 평균 등을 만한다.
+temp['Amt_MA7_2'] = temp['Amt'].rolling(7, min_periods = 1).mean()
+temp.head(10)
+				.딥프
+temp['Amt_D1'] = temp['Amt'].diff() 하루 연산
+temp['Amt_D2'] = temp['Amt'].diff(2) 이틀 연산
+temp.head(10)
